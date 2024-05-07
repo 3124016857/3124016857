@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>嘘！不要慌稍等片刻哟~</title>
+<style>
+    body {
+        background-image: url('/520/imags/lxy2.gif'); /* 使用带有流星的背景图片 */
+        color: #fff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* 隐藏溢出的内容 */
+    }
+    #countdown {
+        font-size: 3em;
+        margin-top: 20vh;
+    }
+    #startButton {
+        font-size: 1.5em;
+        padding: 10px 20px;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div id="countdown"></div>
+<button id="startButton" disabled >进入下一个页面</button>
+
+<script>
+// 目标日期和时间（年/月/日 时:分:秒）
+var targetDate = new Date("2024-05-20T00:00:00");
+
+// 更新倒计时并启用按钮
+function updateCountdown() {
+    var now = new Date().getTime();
+    var distance = targetDate - now;
+
+    // 如果距离目标时间小于0，则将倒计时置为0
+    if (distance < 0) {
+        distance = 0;
+        document.getElementById("startButton").disabled = false;
+    }
+    
+    // 计算剩余时间
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // 显示倒计时
+    document.getElementById("countdown").innerHTML = days + "天 " + hours + "小时 "
+    + minutes + "分 " + seconds + "秒 ";
+    
+    // 每秒更新一次倒计时
+    setTimeout(updateCountdown, 1000);
+}
+
+// 开始倒计时
+updateCountdown();
+
+// 进入下一个页面
+document.getElementById("startButton").onclick = function() {
+    window.location.href = "爱心.html";
+};
+</script>
+
+</body>
+</html>
